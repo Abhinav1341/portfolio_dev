@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "Pixels";
   src: url("/fonts/Minecraft.ttf") format("truetype");
@@ -27,12 +31,27 @@ body:has(.card[data-color="green"]:hover) {
 }
 
 @layer utilities {
+  .c-space {
+    @apply sm:px-10 px-5;
+  }
+  .grid-container {
+    @apply w-full h-full border border-gray-300 bg-[#2a365c] rounded-lg sm:p-7 p-4 flex flex-col gap-5;
+  }
+
+  .grid-subtext {
+    @apply text-[#afb0b6] font-worksans text-sm;
+  }
+
+  .copy-container {
+    @apply cursor-pointer flex justify-center items-center gap-2;
+  }
+
   .max-container {
     @apply max-w-5xl mx-auto sm:p-16 pb-12 !pt-[126px] px-8 min-h-[calc(100vh-80px)];
   }
 
   .head-text {
-    @apply sm:text-5xl text-3xl font-semibold sm:leading-snug font-poppins;
+    @apply sm:text-4xl text-3xl font-semibold sm:leading-snug font-pixels tracking-widest;
   }
 
   .subhead-text {
