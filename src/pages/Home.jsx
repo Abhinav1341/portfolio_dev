@@ -5,6 +5,7 @@ import Island from "../models/Island";
 import Sky from "../models/Sky";
 import Plane from "../models/Plane";
 import Bird from "../models/Bird";
+import HomeInfo from "../components/HomeInfo";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -28,10 +29,10 @@ const Home = () => {
     let screenScale, screenPostion;
     if (window.innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];
-      screenPostion = [0, -1.5, 0];
+      screenPostion = [0, -2.5, 0];
     } else {
       screenScale = [3, 3, 3];
-      screenPostion = [0, -4, -4];
+      screenPostion = [0, -6, -4];
     }
 
     return [screenScale, screenPostion];
@@ -41,7 +42,7 @@ const Home = () => {
   return (
     <section className="w w-full h-screen relative">
       <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        IMPORTANT TEXT ELEMENT
+        {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
       <Canvas
         className={`w-full bg-transparent h-full ${

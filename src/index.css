@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Pixels";
+  src: url("/fonts/Minecraft.ttf") format("truetype");
+}
+
 :root {
   --blue-rgb: 237 245 255;
   --green-rgb: 125 161 35;

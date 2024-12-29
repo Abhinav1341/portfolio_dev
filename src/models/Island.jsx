@@ -25,7 +25,7 @@ const Island = ({
   //Speed and Position of Mouse
   const lastX = useRef(0);
   const rotationSpeed = useRef(0);
-  const dampingFactor = 0.92;
+  const dampingFactor = 0.95;
 
   const handleGrab = (e) => {
     e.stopPropagation();
@@ -41,7 +41,7 @@ const Island = ({
     if (isRotating) {
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const change = (clientX - lastX.current) / viewport.width;
-      rotationSpeed.current = change * Math.PI * 0.035;
+      rotationSpeed.current = change * Math.PI * 0.015;
       // islandRef.current.rotation.y += change * Math.PI * 0.02;
       lastX.current = clientX;
       // rotationSpeed = change * Math.PI * 0.02;
@@ -55,11 +55,11 @@ const Island = ({
   const handleKeydown = (e) => {
     if (e.key === "ArrowLeft") {
       if (isRotating) setIsRotating(true);
-      rotationSpeed.current = 0.012 * Math.PI;
+      rotationSpeed.current = 0.01 * Math.PI;
       // islandRef.current.rotation.y += 0.01 * Math.PI;
     } else if (e.key === "ArrowRight") {
       if (isRotating) setIsRotating(true);
-      rotationSpeed.current = -0.012 * Math.PI;
+      rotationSpeed.current = -0.01 * Math.PI;
       // islandRef.current.rotation.y -= 0.01 * Math.PI;
     }
   };
@@ -72,7 +72,7 @@ const Island = ({
   useFrame(() => {
     if (!isRotating) {
       rotationSpeed.current *= dampingFactor;
-      if (Math.abs(rotationSpeed.current) < 0.003) {
+      if (Math.abs(rotationSpeed.current) < 0.02) {
         rotationSpeed.current = 0;
       }
     } else {
@@ -81,18 +81,20 @@ const Island = ({
         ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
       // Set the current stage based on the island's orientation
-      //I NEED TO EDIT FOR MORE STATES
       switch (true) {
-        case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
+        case normalizedRotation >= 5.024 && normalizedRotation <= 6.08:
+          setCurrentStage(5);
+          break;
+        case normalizedRotation >= 3.768 && normalizedRotation < 4.824:
           setCurrentStage(4);
           break;
-        case normalizedRotation >= 0.85 && normalizedRotation <= 1.3:
+        case normalizedRotation >= 2.512 && normalizedRotation < 3.568:
           setCurrentStage(3);
           break;
-        case normalizedRotation >= 2.4 && normalizedRotation <= 2.6:
+        case normalizedRotation >= 1.256 && normalizedRotation < 2.312:
           setCurrentStage(2);
           break;
-        case normalizedRotation >= 4.25 && normalizedRotation <= 4.75:
+        case normalizedRotation >= 0 && normalizedRotation < 1.056:
           setCurrentStage(1);
           break;
         default:

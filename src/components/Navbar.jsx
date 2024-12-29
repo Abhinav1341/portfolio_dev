@@ -6,8 +6,7 @@ const Navbar = () => {
     <header className="header">
       <NavLink
         to="/"
-        className="h-10 w-16 rounded-md shadow-xl p-1 bg-transparent
-         flex justify-center items-center font-semibold text-2xl"
+        className="flex shadow-2xl justify-center items-center font-semibold text-2xl"
       >
         {/* //////////////////////////////////// */}
         <p className=" bg-gradient-to-r from-emerald-500 to-emerald-700 bg-clip-text text-transparent">
